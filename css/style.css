@@ -1,0 +1,143 @@
+body
+{
+    /*font-family: Open Sans;*/
+    font-family: sans-serif;
+
+    color: #404040;
+    background-color: #eee;
+}
+.pertama
+{
+    margin-top: 50px;
+}
+div
+{
+    margin: 10px;
+    padding: 15px;
+
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: 0 1px 5px;
+
+    min-height: 45px;
+}
+header
+{
+    font-size: 20px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    margin: 0;
+    padding: 7px 0 7px 0;
+
+    text-align: center;
+
+    background-color: #DBFF57;
+    color: #617A00;
+    font-weight: bold;
+    box-shadow: 0 1px 5px;
+}
+label
+{
+    float: right;
+}
+input[type='text'],
+input[type='date'],
+select
+{
+    display: block;
+}
+textarea
+{
+    display: block;
+
+    width: 100%;
+    max-width: 500px;
+    height: 70px;
+}
+.back_button
+{
+    position: fixed;
+    top: 10px;
+    left: 20px;
+}
+
+
+
+input[type='radio']
+{
+    display: none;
+}
+input[type='radio'] + label span
+{
+    display: inline-block;
+
+    width: 38px;
+    height: 38px;
+    /*margin: -1px 4px 0 0;*/
+    margin: 3px 3px 3px 3px;
+
+    cursor: pointer;
+    vertical-align: middle;
+
+    background: url(../img/check_radio_sheet.png) top no-repeat;
+}
+
+
+input[type='radio'] + label span.pass
+{
+    background-position: 0px 0px;
+    margin-left: 20px;
+}
+input[type='radio'] + label span.fail
+{
+    background-position: 0px -38px;
+}
+input[type='radio'] + label span.na
+{
+    background-position: 0px -76px;
+}
+
+
+input[type='radio']:checked + label span.pass
+{
+    background-position: -38px 0px;
+}
+input[type='radio']:checked + label span.fail
+{
+    background-position: -38px -38px;
+}
+input[type='radio']:checked + label span.na
+{
+    background-position: -38px -76px;
+}
+
+
+.myButton {
+    float: right;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+    background-color:#ffffff;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
+    cursor:pointer;
+    color:#666666;
+    font-size:15px;
+    font-weight:bold;
+    margin: 10px;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+    background-color:#f6f6f6;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
