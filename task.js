@@ -17,6 +17,8 @@ function createTask(item, pertama) {
         new Button(item.id, item.teks, item.current, item.next).create();
     } else if (item.jenis === 8) {
         new Title(item.id, item.teks).create();
+    } else if (item.jenis === 9) {
+        new SignPad(item.id, item.teks).create();
     }
 }
 
@@ -326,6 +328,36 @@ function Item6(id, text, pertama) {
         
         //Init nilai
         document.getElementById(id).nilai = 0;
+    };
+}
+
+//Constructor for signature pad
+function SignPad(id, text) {
+    'use strict';
+    this.create = function () {
+        var task = document.createElement('div'),
+            teks = document.createElement('span'),
+            isi = document.createTextNode(text),
+            
+            signpad = document.createElement('canvas');
+        
+        signpad.id = "imageView";
+        signpad.width = "200";
+        signpad.height = "200";
+        signpad.style.backgroundColor = "beige";
+        
+        teks.style.display = "block";
+        
+        task.id = id;
+        teks.appendChild(isi);
+        
+        task.appendChild(teks);
+        
+        task.appendChild(signpad);
+        
+        task.style.display = 'none';
+        
+        document.getElementById('borang').appendChild(task);
     };
 }
 
@@ -789,11 +821,16 @@ var pengesahan = {
         'jenis': 2,
         'teks': 'Ulasan keseluruhan'
     },
+    2: {
+        'id': 'sign_pad',
+        'jenis': 9,
+        'teks': 'Tandatangan'
+    },
     'butang': {
         'id': 'submit',
         'jenis': 7,
         'teks': 'Hantar'
-    }
+    },
 };
 
 // Array untuk simpan semua objects
