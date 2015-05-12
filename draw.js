@@ -1,5 +1,5 @@
-/* © 2009 ROBO Design
- * http://www.robodesign.ro
+/* Adapted from:
+ * https://dev.opera.com/articles/html5-canvas-painting/
  */
 
 // Keep everything in anonymous function, called on window load.
@@ -34,6 +34,11 @@ window.addEventListener('load', function () {
     canvas.addEventListener('mousedown', ev_canvas, false);
     canvas.addEventListener('mousemove', ev_canvas, false);
     canvas.addEventListener('mouseup',   ev_canvas, false);
+    
+    // Tambah touch events
+    canvas.addEventListener('touchstart', ev_canvas, false);
+    canvas.addEventListener('touchmove', ev_canvas, false);
+    canvas.addEventListener('touchend',   ev_canvas, false);
   }
 
   // This painting tool works like a drawing pencil which tracks the mouse 
@@ -49,6 +54,14 @@ window.addEventListener('load', function () {
         context.moveTo(ev._x, ev._y);
         tool.started = true;
     };
+    
+    // Tambah touchstart
+    this.touchstart = function (ev) {
+        context.beginPath();
+        context.moveTo(ev._x, ev._y);
+        tool.started = true;
+        console.log(ev._x, ev._y);
+    };
 
     // This function is called every time you move the mouse. Obviously, it only 
     // draws if the tool.started state is set to true (when you are holding down 
@@ -59,6 +72,15 @@ window.addEventListener('load', function () {
         context.stroke();
       }
     };
+    
+    // Tambah touchmove
+    this.touchmove = function (ev) {
+      if (tool.started) {
+        context.lineTo(ev._x, ev._y);
+        context.stroke();
+        console.log(ev._x, ev._y);
+      }
+    };
 
     // This is called when you release the mouse button.
     this.mouseup = function (ev) {
@@ -67,18 +89,24 @@ window.addEventListener('load', function () {
         tool.started = false;
       }
     };
+    
+    // Tambah touchend
+    this.touchend = function (ev) {
+      if (tool.started) {
+        tool.touchmove(ev);
+        tool.started = false;
+      }
+    };
   }
 
   // The general-purpose event handler. This function just determines the mouse 
   // position relative to the canvas element.
   function ev_canvas (ev) {
-    if (ev.layerX || ev.layerX == 0) { // Firefox
-      ev._x = ev.layerX;
-      ev._y = ev.layerY;
-    } else if (ev.offsetX || ev.offsetX == 0) { // Opera
-      ev._x = ev.offsetX;
-      ev._y = ev.offsetY;
-    }
+    /*ev._x = ev.offsetX;
+    ev._y = ev.offsetY;*/
+    
+    ev._x = ev.touches[0].pageX - ev.touches[0].target.offsetLeft;
+    ev._y = ev.touches[0].pageY - ev.touches[0].target.offsetTop;
 
     // Call the event handler of the tool.
     var func = tool[ev.type];
