@@ -6,6 +6,10 @@ body
     color: #404040;
     background-color: #eee;
 }
+canvas
+{
+    touch-action: none;
+}
 .pertama
 {
     margin-top: 50px;
@@ -63,6 +67,28 @@ textarea
     position: fixed;
     top: 10px;
     left: 20px;
+}
+
+
+
+
+#gbr_ssm {
+    float: right;
+    display: none;
+}
+#gbr_ssm + label span {
+    display: inline-block;
+
+    width: 38px;
+    height: 38px;
+    /*margin: -1px 4px 0 0;*/
+    margin: 3px 3px 3px 3px;
+
+    cursor: pointer;
+    vertical-align: middle;
+
+    background: url(../img/check_radio_sheet.png) top no-repeat;
+    background-position: -76px 0px;
 }
 
 

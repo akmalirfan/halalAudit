@@ -19,6 +19,8 @@ function createTask(item, pertama) {
         new Title(item.id, item.teks).create();
     } else if (item.jenis === 9) {
         new SignPad(item.id, item.teks).create();
+    } else if (item.jenis === 10) {
+        new CameraButton(item.id, item.teks, item.nilai, pertama).create();
     }
 }
 
@@ -227,6 +229,102 @@ function Item5(id, text, nilai, pertama) {
     };
 }
 
+//Constructor for item with 2 radio buttons and image input
+function CameraButton(id, text, nilai, pertama) {
+    'use strict';
+    this.create = function () {
+        var task = document.createElement('div'),
+            teks = document.createElement('span'),
+            isi = document.createTextNode(text),
+            
+            checkpass = document.createElement('input'),
+            checkfail = document.createElement('input'),
+            gambar = document.createElement('input'),
+            
+            label_pass = document.createElement('label'),
+            label_fail = document.createElement('label'),
+            label_gambar = document.createElement('label'),
+            
+            sp1 = document.createElement('span'),
+            sp2 = document.createElement('span'),
+            sp3 = document.createElement('span');
+        
+        gambar.id = 'gbr_' + id;
+        gambar.name = id;
+        gambar.type = "file";
+        //gambar.id = "take-picture";
+        gambar.accept = "image/*";
+        sp3.className = 'gbr';
+        label_gambar.htmlFor = gambar.id;
+        label_gambar.appendChild(sp3);
+        
+        checkpass.id = 'cpass_' + id;
+        checkpass.name = id;
+        checkpass.type = 'radio';
+        checkpass.setAttribute('required', '');
+        checkpass.value = 'pass';
+        sp1.className = 'pass';
+        //sp1.appendChild(isi);
+        label_pass.htmlFor = checkpass.id;
+        label_pass.appendChild(sp1);
+        checkpass.addEventListener('click', function() {
+            if (this.checked) {
+                document.getElementById(id).nilai = 1;
+            }
+        });
+        
+        checkfail.id = 'cfail_' + id;
+        checkfail.name = id;
+        checkfail.type = 'radio';
+        checkfail.setAttribute('required', '');
+        checkfail.value = 'fail';
+        sp2.className = 'fail';
+        //sp2.appendChild(isi);
+        label_fail.htmlFor = checkfail.id;
+        label_fail.appendChild(sp2);
+        checkfail.addEventListener('click', function() {
+            if (this.checked) {
+                document.getElementById(id).nilai = 0;
+            }
+        });
+        
+        task.id = id;
+        teks.appendChild(isi);
+        
+        task.appendChild(gambar);
+        task.appendChild(label_gambar);
+        
+        task.appendChild(checkfail);
+        task.appendChild(label_fail);
+        
+        task.appendChild(checkpass);
+        task.appendChild(label_pass);
+        
+        task.appendChild(teks);
+        
+        task.style.display = 'none';
+        
+        task.getValue = function() {
+            for (var i = 0; i < 2; i++) {
+                if (document.getElementsByName(id)[i].checked) {
+                    if (i === 0) {
+                        return 'fail';
+                    } else if (i === 1) {
+                        return 'pass';
+                    }
+                }
+            }
+        };
+        
+        if (pertama) task.className = 'pertama';
+        
+        document.getElementById('borang').appendChild(task);
+        
+        //Init nilai
+        document.getElementById(id).nilai = 0;
+    };
+}
+
 //Constructor for item with 3 radio buttons
 function Item6(id, text, pertama) {
     'use strict';
@@ -337,6 +435,7 @@ function SignPad(id, text) {
     this.create = function () {
         var task = document.createElement('div'),
             teks = document.createElement('span'),
+            clrBtn = document.createElement('button'),
             isi = document.createTextNode(text),
             
             signpad = document.createElement('canvas');
@@ -346,6 +445,10 @@ function SignPad(id, text) {
         signpad.height = "200";
         signpad.style.backgroundColor = "beige";
         
+        clrBtn.addEventListener('click', function() {
+            document.getElementById('imageView').getContext('2d').clearRect(0, 0, 200, 200);
+        });
+        
         teks.style.display = "block";
         
         task.id = id;
@@ -354,6 +457,7 @@ function SignPad(id, text) {
         task.appendChild(teks);
         
         task.appendChild(signpad);
+        task.appendChild(clrBtn);
         
         task.style.display = 'none';
         
@@ -478,7 +582,7 @@ var dokumentasi = {
     },
     1: {
         'id': 'ssm',
-        'jenis': 5,
+        'jenis': 10,
         'teks': 'Berdaftar dengan SSM'
     },
     2: {
