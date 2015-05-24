@@ -60,7 +60,6 @@ window.addEventListener('load', function () {
         context.beginPath();
         context.moveTo(ev._x, ev._y);
         tool.started = true;
-        console.log(ev._x, ev._y);
     };
 
     // This function is called every time you move the mouse. Obviously, it only 
@@ -78,7 +77,6 @@ window.addEventListener('load', function () {
       if (tool.started) {
         context.lineTo(ev._x, ev._y);
         context.stroke();
-        console.log(ev._x, ev._y);
       }
     };
 
@@ -105,8 +103,10 @@ window.addEventListener('load', function () {
     /*ev._x = ev.offsetX;
     ev._y = ev.offsetY;*/
     
-    ev._x = ev.touches[0].pageX - ev.touches[0].target.offsetLeft;
-    ev._y = ev.touches[0].pageY - ev.touches[0].target.offsetTop;
+    if (ev.touches !== undefined) {
+        ev._x = ev.touches[0].pageX - ev.touches[0].target.offsetLeft;
+        ev._y = ev.touches[0].pageY - ev.touches[0].target.offsetTop;
+    }
 
     // Call the event handler of the tool.
     var func = tool[ev.type];

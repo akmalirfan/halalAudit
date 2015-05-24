@@ -1,31 +1,31 @@
-function createTask(item, pertama) {
+function createTask(item, pertama, kategori) {
     'use strict';
     
     if (item.jenis === 1) {
-        new Item1(item.id, item.teks, pertama).create();
+        new Item1(item.id, item.teks, pertama, kategori).create();
     } else if (item.jenis === 2) {
-        new Item2(item.id, item.teks, pertama).create();
+        new Item2(item.id, item.teks, pertama, kategori).create();
     } else if (item.jenis === 3) {
-        new Item3(item.id, item.teks, item.senarai, pertama).create();
+        new Item3(item.id, item.teks, item.senarai, pertama, kategori).create();
     } else if (item.jenis === 4) {
-        new Item4(item.id, item.teks, pertama).create();
+        new Item4(item.id, item.teks, pertama, kategori).create();
     } else if (item.jenis === 5) {
-        new Item5(item.id, item.teks, item.nilai, pertama).create();
+        new Item5(item.id, item.teks, item.nilai, pertama, kategori).create();
     } else if (item.jenis === 6) {
-        new Item6(item.id, item.teks, pertama).create();
+        new Item6(item.id, item.teks, pertama, kategori).create();
     } else if (item.jenis === 7) {
-        new Button(item.id, item.teks, item.current, item.next).create();
+        new Button(item.id, item.teks, kategori).create();
     } else if (item.jenis === 8) {
-        new Title(item.id, item.teks).create();
+        new Title(item.id, item.teks, kategori).create();
     } else if (item.jenis === 9) {
-        new SignPad(item.id, item.teks).create();
+        new SignPad(item.id, item.teks, kategori).create();
     } else if (item.jenis === 10) {
-        new CameraButton(item.id, item.teks, item.nilai, pertama).create();
+        new CameraButton(item.id, item.teks, item.nilai, pertama, kategori).create();
     }
 }
 
 //Constructor for item with text input
-function Item1(id, text, pertama) {
+function Item1(id, text, pertama, kategori) {
     'use strict';
     this.create = function () {
         var task = document.createElement('div'),
@@ -38,21 +38,20 @@ function Item1(id, text, pertama) {
         kotak.type = 'text';
         
         task.id = id;
+        task.className = 'task';
         teks.appendChild(isi);
         task.appendChild(teks);
         
         teks.appendChild(kotak);
         
-        task.style.display = 'none';
+        if (pertama) task.className += ' pertama';
         
-        if (pertama) task.className = 'pertama';
-        
-        document.getElementById('borang').appendChild(task);
+        document.getElementById(kategori + '_maindiv').appendChild(task);
     };
 }
 
 //Constructor for item with textarea
-function Item2(id, text, pertama) {
+function Item2(id, text, pertama, kategori) {
     'use strict';
     this.create = function () {
         var task = document.createElement('div'),
@@ -64,21 +63,20 @@ function Item2(id, text, pertama) {
         kotak.name = id;
         
         task.id = id;
+        task.className = 'task';
         teks.appendChild(isi);
         task.appendChild(teks);
         
         task.appendChild(kotak);
         
-        task.style.display = 'none';
+        if (pertama) task.className += ' pertama';
         
-        if (pertama) task.className = 'pertama';
-        
-        document.getElementById('borang').appendChild(task);
+        document.getElementById(kategori + '_maindiv').appendChild(task);
     };
 }
 
 //Constructor for item selection
-function Item3(id, text, senarai, pertama) {
+function Item3(id, text, senarai, pertama, kategori) {
     'use strict';
     this.create = function () {
         var task = document.createElement('div'),
@@ -87,6 +85,7 @@ function Item3(id, text, senarai, pertama) {
             pilih = document.createElement('select');
         
         task.id = id;
+        task.className = 'task';
         
         /*
         <select name="select">
@@ -112,17 +111,15 @@ function Item3(id, text, senarai, pertama) {
         task.appendChild(teks);
         task.appendChild(pilih);
         
-        task.style.display = 'none';
+        if (pertama) task.className += ' pertama';
         
-        if (pertama) task.className = 'pertama';
-        
-        document.getElementById('borang').appendChild(task);
+        document.getElementById(kategori + '_maindiv').appendChild(task);
     };
 }
 
 //Constructor for item with calendar
 //tapi perlu ke???
-function Item4(id, text, pertama) {
+function Item4(id, text, pertama, kategori) {
     'use strict';
     this.create = function () {
         var task = document.createElement('div'),
@@ -135,21 +132,20 @@ function Item4(id, text, pertama) {
         tarikh.type = 'date';
         
         task.id = id;
+        task.className = 'task';
         teks.appendChild(isi);
         task.appendChild(teks);
         
         task.appendChild(tarikh);
         
-        task.style.display = 'none';
+        if (pertama) task.className += ' pertama';
         
-        if (pertama) task.className = 'pertama';
-        
-        document.getElementById('borang').appendChild(task);
+        document.getElementById(kategori + '_maindiv').appendChild(task);
     };
 }
 
 //Constructor for item with 2 radio buttons
-function Item5(id, text, nilai, pertama) {
+function Item5(id, text, nilai, pertama, kategori) {
     'use strict';
     this.create = function () {
         var task = document.createElement('div'),
@@ -171,7 +167,6 @@ function Item5(id, text, nilai, pertama) {
         checkpass.setAttribute('required', '');
         checkpass.value = 'pass';
         sp1.className = 'pass';
-        sp1.appendChild(isi);
         label_pass.htmlFor = checkpass.id;
         label_pass.appendChild(sp1);
         checkpass.addEventListener('click', function() {
@@ -186,7 +181,6 @@ function Item5(id, text, nilai, pertama) {
         checkfail.setAttribute('required', '');
         checkfail.value = 'fail';
         sp2.className = 'fail';
-        sp2.appendChild(isi);
         label_fail.htmlFor = checkfail.id;
         label_fail.appendChild(sp2);
         checkfail.addEventListener('click', function() {
@@ -196,6 +190,7 @@ function Item5(id, text, nilai, pertama) {
         });
         
         task.id = id;
+        task.className = 'task';
         teks.appendChild(isi);
         
         task.appendChild(checkfail);
@@ -205,8 +200,6 @@ function Item5(id, text, nilai, pertama) {
         task.appendChild(label_pass);
         
         task.appendChild(teks);
-        
-        task.style.display = 'none';
         
         task.getValue = function() {
             for (var i = 0; i < 2; i++) {
@@ -220,9 +213,9 @@ function Item5(id, text, nilai, pertama) {
             }
         };
         
-        if (pertama) task.className = 'pertama';
+        if (pertama) task.className += ' pertama';
         
-        document.getElementById('borang').appendChild(task);
+        document.getElementById(kategori + '_maindiv').appendChild(task);
         
         //Init nilai
         document.getElementById(id).nilai = 0;
@@ -230,7 +223,7 @@ function Item5(id, text, nilai, pertama) {
 }
 
 //Constructor for item with 2 radio buttons and image input
-function CameraButton(id, text, nilai, pertama) {
+function CameraButton(id, text, nilai, pertama, kategori) {
     'use strict';
     this.create = function () {
         var task = document.createElement('div'),
@@ -252,7 +245,6 @@ function CameraButton(id, text, nilai, pertama) {
         gambar.id = 'gbr_' + id;
         gambar.name = id;
         gambar.type = "file";
-        //gambar.id = "take-picture";
         gambar.accept = "image/*";
         sp3.className = 'gbr';
         label_gambar.htmlFor = gambar.id;
@@ -264,7 +256,6 @@ function CameraButton(id, text, nilai, pertama) {
         checkpass.setAttribute('required', '');
         checkpass.value = 'pass';
         sp1.className = 'pass';
-        //sp1.appendChild(isi);
         label_pass.htmlFor = checkpass.id;
         label_pass.appendChild(sp1);
         checkpass.addEventListener('click', function() {
@@ -279,7 +270,6 @@ function CameraButton(id, text, nilai, pertama) {
         checkfail.setAttribute('required', '');
         checkfail.value = 'fail';
         sp2.className = 'fail';
-        //sp2.appendChild(isi);
         label_fail.htmlFor = checkfail.id;
         label_fail.appendChild(sp2);
         checkfail.addEventListener('click', function() {
@@ -289,6 +279,7 @@ function CameraButton(id, text, nilai, pertama) {
         });
         
         task.id = id;
+        task.className = 'task';
         teks.appendChild(isi);
         
         task.appendChild(gambar);
@@ -302,8 +293,6 @@ function CameraButton(id, text, nilai, pertama) {
         
         task.appendChild(teks);
         
-        task.style.display = 'none';
-        
         task.getValue = function() {
             for (var i = 0; i < 2; i++) {
                 if (document.getElementsByName(id)[i].checked) {
@@ -316,9 +305,9 @@ function CameraButton(id, text, nilai, pertama) {
             }
         };
         
-        if (pertama) task.className = 'pertama';
+        if (pertama) task.className += ' pertama';
         
-        document.getElementById('borang').appendChild(task);
+        document.getElementById(kategori + '_maindiv').appendChild(task);
         
         //Init nilai
         document.getElementById(id).nilai = 0;
@@ -326,7 +315,7 @@ function CameraButton(id, text, nilai, pertama) {
 }
 
 //Constructor for item with 3 radio buttons
-function Item6(id, text, pertama) {
+function Item6(id, text, pertama, kategori) {
     'use strict';
     this.create = function () {
         var task = document.createElement('div'),
@@ -351,7 +340,6 @@ function Item6(id, text, pertama) {
         checkpass.setAttribute('required', '');
         checkpass.value = 'pass';
         sp1.className = 'pass';
-        sp1.appendChild(isi);
         label_pass.htmlFor = checkpass.id;
         label_pass.appendChild(sp1);
         checkpass.addEventListener('click', function() {
@@ -366,7 +354,6 @@ function Item6(id, text, pertama) {
         checkfail.setAttribute('required', '');
         checkfail.value = 'fail';
         sp2.className = 'fail';
-        sp2.appendChild(isi);
         label_fail.htmlFor = checkfail.id;
         label_fail.appendChild(sp2);
         checkfail.addEventListener('click', function() {
@@ -381,7 +368,6 @@ function Item6(id, text, pertama) {
         checkna.setAttribute('required', '');
         checkna.value = 'na';
         sp3.className = 'na';
-        sp3.appendChild(isi);
         label_na.htmlFor = checkna.id;
         label_na.appendChild(sp3);
         checkna.addEventListener('click', function() {
@@ -391,6 +377,7 @@ function Item6(id, text, pertama) {
         });
         
         task.id = id;
+        task.className = 'task';
         teks.appendChild(isi);
         
         task.appendChild(checkna);
@@ -403,8 +390,6 @@ function Item6(id, text, pertama) {
         task.appendChild(label_pass);
         
         task.appendChild(teks);
-        
-        task.style.display = 'none';
         
         task.getValue = function() {
             for (var i = 0; i < 3; i++) {
@@ -420,9 +405,9 @@ function Item6(id, text, pertama) {
             }
         };
         
-        if (pertama) task.className = 'pertama';
+        if (pertama) task.className += ' pertama';
         
-        document.getElementById('borang').appendChild(task);
+        document.getElementById(kategori + '_maindiv').appendChild(task);
         
         //Init nilai
         document.getElementById(id).nilai = 0;
@@ -430,12 +415,12 @@ function Item6(id, text, pertama) {
 }
 
 //Constructor for signature pad
-function SignPad(id, text) {
+function SignPad(id, text, kategori) {
     'use strict';
     this.create = function () {
         var task = document.createElement('div'),
             teks = document.createElement('span'),
-            clrBtn = document.createElement('button'),
+            clrBtn = document.createElement('div'),
             isi = document.createTextNode(text),
             
             signpad = document.createElement('canvas');
@@ -445,6 +430,8 @@ function SignPad(id, text) {
         signpad.height = "200";
         signpad.style.backgroundColor = "beige";
         
+        clrBtn.innerHTML = 'Padam';
+        clrBtn.className = 'clrBtn';
         clrBtn.addEventListener('click', function() {
             document.getElementById('imageView').getContext('2d').clearRect(0, 0, 200, 200);
         });
@@ -452,6 +439,7 @@ function SignPad(id, text) {
         teks.style.display = "block";
         
         task.id = id;
+        task.className = 'task';
         teks.appendChild(isi);
         
         task.appendChild(teks);
@@ -459,42 +447,44 @@ function SignPad(id, text) {
         task.appendChild(signpad);
         task.appendChild(clrBtn);
         
-        task.style.display = 'none';
-        
-        document.getElementById('borang').appendChild(task);
+        document.getElementById(kategori + '_maindiv').appendChild(task);
     };
 }
 
 //Constructor for buttons
-function Button(id, text) {
+function Button(id, text, kategori) {
     'use strict';
     this.create = function () {
-        var btn = document.createElement('button'),
+        var btn,
             isi = document.createTextNode(text);
+        
+        if (id === 'submit') {
+            btn = document.createElement('button');
+            btn.name = id;
+            btn.type = 'submit';
+        } else {
+            btn = document.createElement('div');
+        }
         
         btn.id = id;
         btn.className = 'myButton';
-        btn.name = id;
-        btn.type = 'button';
         btn.appendChild(isi);
         
-        btn.style.display = 'none';
-        
-        btn.addEventListener('click', function() {
-            window.scrollBy(0, -window.scrollY);
-        });
-        
-        document.getElementById('borang').appendChild(btn);
+        document.getElementById(kategori + '_maindiv').appendChild(btn);
     };
 }
 
 //Constructor for title
-function Title(id, text) {
+function Title(id, text, kategori) {
     'use strict';
     this.create = function () {
-        var tt = document.createElement('header'),
+        var maindiv = document.createElement('div'),
+            tt = document.createElement('header'),
             isi = document.createTextNode(text),
             sp = document.createElement('span');
+        
+        maindiv.className = 'maindiv';
+        maindiv.id = kategori + '_maindiv';
         
         sp.id = id + '_span';
         sp.appendChild(isi);
@@ -502,9 +492,8 @@ function Title(id, text) {
         tt.id = id;
         tt.appendChild(sp);
         
-        tt.style.display = 'none';
-        
-        document.body.appendChild(tt);
+        maindiv.appendChild(tt);
+        document.getElementById('borang').appendChild(maindiv);
     };
 }
 
@@ -957,52 +946,41 @@ for (var i = 0; i < 10; i++) {
     var counter = 0;
     
     for (var item in semua[i]) {
-        createTask(semua[i][item], counter === 1);
-        
-        if (i === 0) {
-            document.getElementById(semua[i][item].id).style.display = '';
-        }
+        createTask(semua[i][item], counter === 1, semua[i][0].id);
         
         counter++;
     }
 }
 
-document.getElementById('submit').type = 'submit';
-
 // Back button ///////////////
-for (var i = 1; i < 10; i++) {
-    var back_btn = document.createElement('button');
+// Tolak satu untuk exclude butang submit
+var limit = semua.length;
+
+for (var i = 1; i < limit; i++) {
+    var back_btn = document.createElement('div');
+    
     back_btn.className = 'back_button';
     back_btn.innerHTML = '<';
     back_btn.simpan = i;
     back_btn.addEventListener('click', function() {
-        for (var item in semua[this.simpan]) {
-            document.getElementById(semua[this.simpan][item].id).style.display = 'none';
-        }
-
-        for (item in semua[this.simpan - 1]) {
-            document.getElementById(semua[this.simpan - 1][item].id).style.display = '';
-        }
-        
+        window.location.href = '#' + semua[this.simpan - 1][0].id + '_maindiv';
         window.scrollBy(0, -window.scrollY);
     });
     
     document.getElementById(semua[i][0].id).appendChild(back_btn);
 }
-// END Back button ///////////
 
-for (var i = 0; i < 9; i++) {
-    var nextButton = document.getElementById(semua[i]['butang'].id);
+// Next button ///////////////
+// Tolak satu untuk exclude butang submit
+var limit = semua.length - 1;
+
+for (var i = 0; i < limit; i++) {
+    var nextButton = document.getElementById(semua[i].butang.id);
     
     nextButton.simpan = i;
     nextButton.addEventListener('click', function() {
-        for (var item in semua[this.simpan]) {
-            document.getElementById(semua[this.simpan][item].id).style.display = 'none';
-        }
-
-        for (item in semua[this.simpan + 1]) {
-            document.getElementById(semua[this.simpan + 1][item].id).style.display = '';
-        }
+        window.location.href = '#' + semua[this.simpan + 1][0].id + '_maindiv';
+        window.scrollBy(0, -window.scrollY);
     });
 }
 
@@ -1059,3 +1037,5 @@ document.addEventListener('click', function() {
         }
     }
 });
+
+window.location.href = '#' + semua[0][0].id + '_maindiv';

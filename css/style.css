@@ -10,11 +10,7 @@ canvas
 {
     touch-action: none;
 }
-.pertama
-{
-    margin-top: 50px;
-}
-div
+.task
 {
     margin: 10px;
     padding: 15px;
@@ -24,6 +20,18 @@ div
     box-shadow: 0 1px 5px;
 
     min-height: 45px;
+}
+.pertama
+{
+    margin-top: 50px;
+}
+.maindiv
+{
+    display: none;
+}
+.maindiv:target
+{
+    display: block;
 }
 header
 {
@@ -88,7 +96,7 @@ textarea
     vertical-align: middle;
 
     background: url(../img/check_radio_sheet.png) top no-repeat;
-    background-position: -76px 0px;
+    background-position: -76px 0;
 }
 
 
@@ -115,22 +123,22 @@ input[type='radio'] + label span
 
 input[type='radio'] + label span.pass
 {
-    background-position: 0px 0px;
+    background-position: 0 0;
     margin-left: 20px;
 }
 input[type='radio'] + label span.fail
 {
-    background-position: 0px -38px;
+    background-position: 0 -38px;
 }
 input[type='radio'] + label span.na
 {
-    background-position: 0px -76px;
+    background-position: 0 -76px;
 }
 
 
 input[type='radio']:checked + label span.pass
 {
-    background-position: -38px 0px;
+    background-position: -38px 0;
 }
 input[type='radio']:checked + label span.fail
 {
@@ -144,7 +152,7 @@ input[type='radio']:checked + label span.na
 
 .myButton {
     float: right;
-    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    box-shadow:inset 0 1px 0 0 #ffffff;
     background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
     background-color:#ffffff;
     border-radius:6px;
@@ -157,13 +165,38 @@ input[type='radio']:checked + label span.na
     margin: 10px;
     padding:6px 24px;
     text-decoration:none;
-    text-shadow:0px 1px 0px #ffffff;
+    text-shadow:0 1px 0 #ffffff;
 }
 .myButton:hover {
     background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
     background-color:#f6f6f6;
 }
 .myButton:active {
+    position:relative;
+    top:1px;
+}
+
+.clrBtn {
+    box-shadow:inset 0 1px 0 0 #ffffff;
+    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+    background-color:#ffffff;
+    border-radius:6px;
+    border:1px solid #dcdcdc;
+    display:inline-block;
+    cursor:pointer;
+    color:#666666;
+    font-size:15px;
+    font-weight:bold;
+    margin: 10px;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0 1px 0 #ffffff;
+}
+.clrBtn:hover {
+    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+    background-color:#f6f6f6;
+}
+.clrBtn:active {
     position:relative;
     top:1px;
 }
