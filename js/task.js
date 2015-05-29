@@ -555,9 +555,7 @@ var maklumat = {
     'butang': {
         'id': 'gotoDoc',
         'jenis': 7,
-        'teks': 'Dokumentasi',
-        'current': maklumat,
-        'next': dokumentasi
+        'teks': 'Dokumentasi'
     }
 };
 
@@ -612,9 +610,7 @@ var dokumentasi = {
     'butang': {
         'id': 'gotoBahan',
         'jenis': 7,
-        'teks': 'Bahan mentah',
-        'current': dokumentasi,
-        'next': bahan
+        'teks': 'Bahan mentah'
     }
 };
 
@@ -953,8 +949,12 @@ for (var i = 0; i < 10; i++) {
 }
 
 // Back button ///////////////
-// Tolak satu untuk exclude butang submit
-var limit = semua.length;
+/*var limit = semua.length;
+
+function goBack() {
+    history.back(-1);
+    window.scrollBy(0, -window.scrollY);
+}
 
 for (var i = 1; i < limit; i++) {
     var back_btn = document.createElement('div');
@@ -962,12 +962,41 @@ for (var i = 1; i < limit; i++) {
     back_btn.className = 'back_button';
     back_btn.innerHTML = '<';
     back_btn.simpan = i;
-    back_btn.addEventListener('click', function() {
-        window.location.href = '#' + semua[this.simpan - 1][0].id + '_maindiv';
-        window.scrollBy(0, -window.scrollY);
-    });
+    back_btn.addEventListener('click', goBack);
     
     document.getElementById(semua[i][0].id).appendChild(back_btn);
+}*/
+
+// Navigation ///////////////
+var limit = semua.length;
+
+for (var i = 0; i < limit; i++) {
+    var navspan = document.createElement('span'),
+        navinput = document.createElement('input'),
+        navlabel = document.createElement('label');
+    
+    navinput.id = semua[i][0].id + '_nav';
+    navinput.name = 'nav';
+    navinput.type = 'radio';
+    
+    navlabel.className = 'nav-item';
+    navlabel.htmlFor = navinput.id;
+    navlabel.innerHTML = semua[i][0].teks;
+    
+    navspan.simpan = i;
+    navspan.addEventListener('click', function() {
+        window.location.href = '#' + semua[this.simpan][0].id + '_maindiv';
+        window.scrollBy(0, -window.scrollY);
+        document.getElementById('nav-trigger').checked = false;
+    });
+    
+    if (i === 0) {
+        navinput.checked = true;
+    }
+    
+    navspan.appendChild(navinput);
+    navspan.appendChild(navlabel);
+    document.getElementById('navdiv').appendChild(navspan);
 }
 
 // Next button ///////////////
@@ -1039,3 +1068,7 @@ document.addEventListener('click', function() {
 });
 
 window.location.href = '#' + semua[0][0].id + '_maindiv';
+
+window.onload = function() {
+    window.scrollBy(0, -500);
+};

@@ -12,14 +12,13 @@ canvas
 }
 .task
 {
+    min-height: 45px;
     margin: 10px;
     padding: 15px;
 
     border-radius: 3px;
     background-color: white;
     box-shadow: 0 1px 5px;
-
-    min-height: 45px;
 }
 .pertama
 {
@@ -36,10 +35,10 @@ canvas
 header
 {
     font-size: 20px;
+    font-weight: bold;
 
     position: fixed;
     top: 0;
-    left: 0;
 
     width: 100%;
     margin: 0;
@@ -47,9 +46,8 @@ header
 
     text-align: center;
 
-    background-color: #DBFF57;
-    color: #617A00;
-    font-weight: bold;
+    color: #617a00;
+    background-color: #dbff57;
     box-shadow: 0 1px 5px;
 }
 label
@@ -75,16 +73,20 @@ textarea
     position: fixed;
     top: 10px;
     left: 20px;
+
+    cursor: pointer;
 }
 
 
 
 
-#gbr_ssm {
-    float: right;
+#gbr_ssm
+{
     display: none;
+    float: right;
 }
-#gbr_ssm + label span {
+#gbr_ssm + label span
+{
     display: inline-block;
 
     width: 38px;
@@ -123,8 +125,9 @@ input[type='radio'] + label span
 
 input[type='radio'] + label span.pass
 {
-    background-position: 0 0;
     margin-left: 20px;
+
+    background-position: 0 0;
 }
 input[type='radio'] + label span.fail
 {
@@ -150,53 +153,69 @@ input[type='radio']:checked + label span.na
 }
 
 
-.myButton {
+.myButton
+{
+    font-size: 15px;
+    font-weight: bold;
+
+    display: inline-block;
     float: right;
-    box-shadow:inset 0 1px 0 0 #ffffff;
-    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-    background-color:#ffffff;
-    border-radius:6px;
-    border:1px solid #dcdcdc;
-    display:inline-block;
-    cursor:pointer;
-    color:#666666;
-    font-size:15px;
-    font-weight:bold;
+
     margin: 10px;
-    padding:6px 24px;
-    text-decoration:none;
-    text-shadow:0 1px 0 #ffffff;
+    padding: 6px 24px;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    color: #666;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    background: linear-gradient(to bottom, #fff 5%, #f6f6f6 100%);
+    background-color: #fff;
+    box-shadow: inset 0 1px 0 0 #fff;
+    text-shadow: 0 1px 0 #fff;
 }
-.myButton:hover {
-    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-    background-color:#f6f6f6;
+.myButton:hover
+{
+    background: linear-gradient(to bottom, #f6f6f6 5%, #fff 100%);
+    background-color: #f6f6f6;
 }
-.myButton:active {
-    position:relative;
-    top:1px;
+.myButton:active
+{
+    position: relative;
+    top: 1px;
 }
 
-.clrBtn {
-    box-shadow:inset 0 1px 0 0 #ffffff;
-    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-    background-color:#ffffff;
-    border-radius:6px;
-    border:1px solid #dcdcdc;
-    display:inline-block;
-    cursor:pointer;
-    color:#666666;
-    font-size:15px;
-    font-weight:bold;
+.clrBtn
+{
+    font-size: 15px;
+    font-weight: bold;
+
+    display: block;
+
+    max-width: 60px;
     margin: 10px;
-    padding:6px 24px;
-    text-decoration:none;
-    text-shadow:0 1px 0 #ffffff;
+    padding: 6px 24px;
+
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+
+    color: #666;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    background: linear-gradient(to bottom, #fff 5%, #f6f6f6 100%);
+    background-color: #fff;
+    box-shadow: inset 0 1px 0 0 #fff;
+    text-shadow: 0 1px 0 #fff;
 }
-.clrBtn:hover {
-    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-    background-color:#f6f6f6;
+.clrBtn:hover
+{
+    background: linear-gradient(to bottom, #f6f6f6 5%, #fff 100%);
+    background-color: #f6f6f6;
 }
-.clrBtn:active {
-    position:relative;
-    top:1px;
+.clrBtn:active
+{
+    position: relative;
+    top: 1px;
 }
