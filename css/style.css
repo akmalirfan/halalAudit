@@ -97,7 +97,7 @@ textarea
     cursor: pointer;
     vertical-align: middle;
 
-    background: url(../img/check_radio_sheet.png) top no-repeat;
+    background: url(../img/check_radio_sheet.svg) top no-repeat;
     background-position: -76px 0;
 }
 
@@ -119,7 +119,7 @@ input[type='radio'] + label span
     cursor: pointer;
     vertical-align: middle;
 
-    background: url(../img/check_radio_sheet.png) top no-repeat;
+    background: url(../img/check_radio_sheet.svg) top no-repeat;
 }
 
 
